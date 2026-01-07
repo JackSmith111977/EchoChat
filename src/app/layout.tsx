@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "@arco-design/web-react/dist/css/arco.css";
+import GlobalAlert from "@/components/organisms/GlobalAlert";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <GlobalAlert />
         {children}
       </body>
     </html>
