@@ -3,12 +3,12 @@ import { useAlertStore } from "@/store/useAlertStore";
 import { Alert } from "@arco-design/web-react";
 
 export default function GlobalAlert() {
-  const { open, content, type, showAlert } = useAlertStore();
+  const { open, content, type } = useAlertStore();
 
   if (!open) return null;
 
   return (
-    <div className="pointer-events-none fixed top-10 left-0 z-[9999] flex w-full justify-center">
+    <div className="pointer-events-none fixed top-10 left-0 z-9999 flex w-full justify-center">
       <Alert
         type={type}
         content={content}
