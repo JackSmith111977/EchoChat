@@ -10,7 +10,7 @@ import { Button, Form, Grid, Link, Typography } from "@arco-design/web-react";
 import NameInput from "../molecules/NameInput";
 import PasswordInput from "../molecules/PasswordInput";
 
-interface LoginFormData {
+export interface LoginFormData {
   username: string;
   password: string;
 }
@@ -26,7 +26,7 @@ export default function LoginForm({
   handleLogin,
   handleRegister,
   title = "欢迎使用EchoChat",
-  className = "bg-white p-10 rounded-2xl shadow-2xl border border-gray-100 flex flex-col justify-center gap-2",
+  className = "bg-white/40 p-10 rounded-2xl backdrop-blur-md shadow-2xl border border-white/50 flex flex-col justify-center gap-2",
   subTitle,
 }: LoginFormProps) {
   const [form] = Form.useForm();
@@ -60,7 +60,7 @@ export default function LoginForm({
           field="password"
           rules={[
             { required: true, message: "密码不能为空" },
-            { min: 6, message: "密码长度不能小于6" },
+            // { type: "string", minLength: 6, message: "密码长度不能小于6" },
           ]}
         />
         <Grid.Row gutter={12} style={{ marginBottom: 10 }}>

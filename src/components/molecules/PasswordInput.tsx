@@ -15,6 +15,8 @@ interface PasswordInputProps {
   placeholder: string;
   field: string;
   rules: RulesProps[];
+  // 接收依赖字段
+  dependencies?: string[];
 }
 
 const FormItem = Form.Item;
@@ -24,9 +26,17 @@ export default function PasswordInput({
   label = "密码",
   field,
   rules,
+  // 解构依赖字段
+  dependencies,
 }: PasswordInputProps) {
   return (
-    <FormItem label={label} field={field} rules={rules} requiredSymbol={false}>
+    <FormItem
+      label={label}
+      field={field}
+      rules={rules}
+      requiredSymbol={false}
+      dependencies={dependencies}
+    >
       <Input.Password
         placeholder={placeholder}
         visibilityToggle

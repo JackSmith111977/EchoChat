@@ -8,7 +8,7 @@ interface AlertState {
     type: AlertType;
     // 动作
     showAlert: (content: string, type: AlertType) => void;
-    hideAlert: () => void;
+    // hideAlert: () => void;
 }
 
 export const useAlertStore = create<AlertState>((set) => ({
@@ -21,8 +21,5 @@ export const useAlertStore = create<AlertState>((set) => ({
         setTimeout(() => {
             set({ content: "", type: "info", open: false });
         }, 3000);
-    },
-    hideAlert: () => {
-        set({ content: "", type: "info" });
-    },
+    }
 }))
