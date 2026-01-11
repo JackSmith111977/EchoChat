@@ -3,11 +3,13 @@
 
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { RegisterFormData } from "@/types/registerFormData";
+import bcrypt from "bcryptjs";
 
 // 服务端注册用户逻辑
 // 1. 基本校验
 // 2. 检查用户是否已存在，若存在，错误回调
 // 3. 插入用户到数据库，成功/失败回调
+// extra：利用 bcrypt 进行加盐哈希加密
 export async function register(formData: RegisterFormData){
     const { username, password } = formData;
 
@@ -29,10 +31,13 @@ export async function register(formData: RegisterFormData){
             return { success: false, message: "用户已存在" };
         }
 
+        // bcrypt 加密
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         // 插入用户到数据库
         const { error } = await supabaseAdmin.from("users").insert({
             username,
-            password,
+            password: hashedPassword,
         });
 
         // 插入失败回调

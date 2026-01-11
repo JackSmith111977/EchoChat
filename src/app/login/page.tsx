@@ -3,6 +3,7 @@
 // 2. 处理登录逻辑
 // 3. 处理注册跳转逻辑
 "use client";
+import { login } from "@/actions/login";
 import BackgroundCarousel from "@/components/organisms/BackgroundCarousel";
 import LoginForm, { LoginFormData } from "@/components/organisms/LoginForm";
 import { useAlertStore } from "@/store/useAlertStore";
@@ -12,13 +13,15 @@ export default function LoginPage() {
   const router = useRouter();
   const showAlert = useAlertStore((state) => state.showAlert);
   const handleLogin = async (values: LoginFormData) => {
-    if (values.username === "admin" && values.password === "114514") {
-      showAlert("登录成功", "success");
+    const result = await login(values);
+    if (result.success) {
+      showAlert(`登录成功，欢迎你，${result.data.username}`, "success");
+      // 跳转到首页
       setTimeout(() => {
         router.push("/");
-      }, 1000);
+      }, 1500);
     } else {
-      showAlert("用户名或密码错误", "error");
+      showAlert(result.message, "error");
     }
   };
 
