@@ -6,13 +6,7 @@
 import { Button, Form, Link, Typography } from "@arco-design/web-react";
 import NameInput from "../molecules/NameInput";
 import PasswordInput from "../molecules/PasswordInput";
-
-// 定义数据结构
-// 账号名称，密码
-interface RegisterFormData {
-  username: string;
-  password: string;
-}
+import { RegisterFormData } from "@/types/registerFormData";
 
 // 向上暴露注册处理函数
 // 向上暴露标题
